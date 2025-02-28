@@ -43,7 +43,7 @@ def render():
     clock.tick(fps)
 
 
-is_over = True
+is_over = False
 while True:
     if is_over:
         for event in pygame.event.get():
@@ -109,8 +109,7 @@ while True:
                 body.insert(-1, pygame.Rect(body[-1].x, body[-1].y, grid_size, grid_size))
 
             # Check snake collision with walls
-            if body[0].right > (screen.get_width()) or body[0].left < 0 or body[0].top < 0 or body[0].bottom > (
-            screen.get_height()):
+            if body[0].right > (screen.get_width()) or body[0].left < 0 or body[0].top < 0 or body[0].bottom > (screen.get_height()):
                 # Switch to the dead state
                 body.pop(0)
                 is_over = True
