@@ -81,9 +81,6 @@ while True:
                 if not current_direction == 'up':
                     next_direction = "down"
 
-            if event.key == pygame.K_SPACE:
-                body.insert(-1, pygame.Rect(body[-1].x, body[-1].y, grid_size, grid_size))
-
         # Move snake forward
         if event.type == move_event:
             body.pop()
@@ -98,26 +95,30 @@ while True:
                 body[0].y = body[0].y + grid_size
             current_direction = next_direction
 
-        # Check apple collision
-        if body[0].colliderect(apple):
-            while True:
-                new_x = random.randint(0, (screen.get_width() - grid_size) // grid_size) * grid_size
-                new_y = random.randint(0, (screen.get_height() - grid_size) // grid_size) * grid_size
-                apple = pygame.Rect(new_x, new_y, grid_size, grid_size)
+            # Check apple collision
+            if body[0].colliderect(apple):
+                while True:
+                    new_x = random.randint(0, (screen.get_width() - grid_size) // grid_size) * grid_size
+                    new_y = random.randint(0, (screen.get_height() - grid_size) // grid_size) * grid_size
+                    apple = pygame.Rect(new_x, new_y, grid_size, grid_size)
 
-                if not any(segment.colliderect(apple) for segment in body):
+                    if not any(segment.colliderect(apple) for segment in body):
+                        break
+                    else:
+                        print("apple spawned inside snake")
+                body.insert(-1, pygame.Rect(body[-1].x, body[-1].y, grid_size, grid_size))
+
+            # Check snake collision with walls
+            if body[0].right > (screen.get_width()) or body[0].left < 0 or body[0].top < 0 or body[0].bottom > (
+            screen.get_height()):
+                # Switch to the dead state
+                body.pop(0)
+                is_over = True
+                break
+
+            # Check snake collision with itself
+            for i in range(1, len(body)):
+                if body[0].colliderect(body[i]):
+                    is_over = True
                     break
-                else:
-                    print("apple spawned inside snake")
-            body.insert(-1, pygame.Rect(body[-1].x, body[-1].y, grid_size, grid_size))
-
-    # Rendering
-    screen.fill("black")
-    pygame.draw.rect(screen, "red", apple)
-    for square in body:
-        pygame.draw.rect(screen, "blue", square)
-    pygame.draw.rect(screen, "green", body[0])
-
-    # Update Screen
-    pygame.display.flip()
-    clock.tick(fps)
+    render()
