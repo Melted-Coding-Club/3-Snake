@@ -43,7 +43,7 @@ def render():
     clock.tick(fps)
 
 
-is_over = True
+is_over = False
 while True:
     if is_over:
         for event in pygame.event.get():
@@ -110,14 +110,4 @@ while True:
                 else:
                     print("apple spawned inside snake")
             body.insert(-1, pygame.Rect(body[-1].x, body[-1].y, grid_size, grid_size))
-
-    # Rendering
-    screen.fill("black")
-    pygame.draw.rect(screen, "red", apple)
-    for square in body:
-        pygame.draw.rect(screen, "blue", square)
-    pygame.draw.rect(screen, "green", body[0])
-
-    # Update Screen
-    pygame.display.flip()
-    clock.tick(fps)
+    render()
