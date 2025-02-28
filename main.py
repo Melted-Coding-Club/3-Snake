@@ -81,9 +81,6 @@ while True:
                 if not current_direction == 'up':
                     next_direction = "down"
 
-            if event.key == pygame.K_SPACE:
-                body.insert(-1, pygame.Rect(body[-1].x, body[-1].y, grid_size, grid_size))
-
         # Move snake forward
         if event.type == move_event:
             body.pop()
@@ -98,16 +95,16 @@ while True:
                 body[0].y = body[0].y + grid_size
             current_direction = next_direction
 
-        # Check apple collision
-        if body[0].colliderect(apple):
-            while True:
-                new_x = random.randint(0, (screen.get_width() - grid_size) // grid_size) * grid_size
-                new_y = random.randint(0, (screen.get_height() - grid_size) // grid_size) * grid_size
-                apple = pygame.Rect(new_x, new_y, grid_size, grid_size)
+            # Check apple collision
+            if body[0].colliderect(apple):
+                while True:
+                    new_x = random.randint(0, (screen.get_width() - grid_size) // grid_size) * grid_size
+                    new_y = random.randint(0, (screen.get_height() - grid_size) // grid_size) * grid_size
+                    apple = pygame.Rect(new_x, new_y, grid_size, grid_size)
 
-                if not any(segment.colliderect(apple) for segment in body):
-                    break
-                else:
-                    print("apple spawned inside snake")
-            body.insert(-1, pygame.Rect(body[-1].x, body[-1].y, grid_size, grid_size))
+                    if not any(segment.colliderect(apple) for segment in body):
+                        break
+                    else:
+                        print("apple spawned inside snake")
+                body.insert(-1, pygame.Rect(body[-1].x, body[-1].y, grid_size, grid_size))
     render()
