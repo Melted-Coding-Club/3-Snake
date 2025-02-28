@@ -26,6 +26,20 @@ while True:
             pygame.quit()
             quit()
 
+        # Player controls
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RIGHT:
+                next_direction = "right"
+            if event.key == pygame.K_LEFT:
+                next_direction = "left"
+            if event.key == pygame.K_UP:
+                next_direction = "up"
+            if event.key == pygame.K_DOWN:
+                next_direction = "down"
+
+            if event.key == pygame.K_SPACE:
+                body.insert(-1, pygame.Rect(body[-1].x, body[-1].y, grid_size, grid_size))
+
         # Move snake forward
         if event.type == move_event:
             body.pop()
