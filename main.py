@@ -14,6 +14,7 @@ body = [
     pygame.Rect(grid_size * 4, grid_size * 5, grid_size, grid_size),
 ]
 
+current_direction = "right"
 next_direction = "right"
 
 move_event = pygame.USEREVENT + 1
@@ -26,16 +27,19 @@ while True:
             pygame.quit()
             quit()
 
-        # Player controls
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT:
-                next_direction = "right"
+                if not current_direction == 'left':
+                    next_direction = "right"
             if event.key == pygame.K_LEFT:
-                next_direction = "left"
+                if not current_direction == 'right':
+                    next_direction = "left"
             if event.key == pygame.K_UP:
-                next_direction = "up"
+                if not current_direction == 'down':
+                    next_direction = "up"
             if event.key == pygame.K_DOWN:
-                next_direction = "down"
+                if not current_direction == 'up':
+                    next_direction = "down"
 
             if event.key == pygame.K_SPACE:
                 body.insert(-1, pygame.Rect(body[-1].x, body[-1].y, grid_size, grid_size))
