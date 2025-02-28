@@ -6,8 +6,8 @@ pygame.init()
 screen = pygame.display.set_mode((800, 600))
 pygame.display.set_caption('Snake')
 clock = pygame.time.Clock()
-fps = 60
 font = pygame.font.SysFont("Segoe UI", 35)
+fps = 60
 
 grid_size = 40
 
