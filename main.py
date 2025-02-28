@@ -6,6 +6,7 @@ pygame.init()
 screen = pygame.display.set_mode((800, 600))
 pygame.display.set_caption('Snake')
 clock = pygame.time.Clock()
+font = pygame.font.SysFont("Segoe UI", 35)
 fps = 60
 
 grid_size = 40
@@ -22,7 +23,44 @@ next_direction = "right"
 move_event = pygame.USEREVENT + 1
 pygame.time.set_timer(move_event, 250)
 
+
+def render():
+    screen.fill("dark gray")
+    pygame.draw.rect(screen, "red", apple)
+    for square in body:
+        pygame.draw.rect(screen, "blue", square)
+    pygame.draw.rect(screen, "green", body[0])
+
+    text_surface = font.render(f"Length: {int(len(body))}", False, "white")  # "text", antialias, color
+    screen.blit(text_surface, (2, 2))
+
+    if is_over:
+        text_surface = font.render("Game Over", False, "red")  # "text", antialias, color
+        screen.blit(text_surface, (screen.get_width() // 2 - text_surface.get_width() // 2,
+                                   screen.get_height() // 2 - text_surface.get_height() // 2))
+
+    pygame.display.update()
+    clock.tick(fps)
+
+
+is_over = True
 while True:
+    if is_over:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+                body = [
+                    pygame.Rect(grid_size * 5, grid_size * 5, grid_size, grid_size),
+                    pygame.Rect(grid_size * 4, grid_size * 5, grid_size, grid_size)
+                ]
+                direction = None
+                is_over = False
+
+        render()
+        continue
+
     # Event handling
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
