@@ -1,8 +1,8 @@
-import random
 import pygame
-import copy
+import random
 
 pygame.init()
+
 screen = pygame.display.set_mode((800, 600))
 pygame.display.set_caption('Snake')
 clock = pygame.time.Clock()
@@ -66,7 +66,6 @@ while True:
             pygame.quit()
             quit()
 
-        # Player controls
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT:
                 if not current_direction == 'left':
