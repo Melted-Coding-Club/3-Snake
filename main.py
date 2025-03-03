@@ -36,8 +36,7 @@ def render():
 
     if is_over:
         text_surface = font.render("Game Over", False, "red")  # "text", antialias, color
-        screen.blit(text_surface, (screen.get_width() // 2 - text_surface.get_width() // 2,
-                                   screen.get_height() // 2 - text_surface.get_height() // 2))
+        screen.blit(text_surface, (screen.get_width() // 2 - text_surface.get_width() // 2, screen.get_height() // 2 - text_surface.get_height() // 2))
 
     pygame.display.update()
     clock.tick(fps)
