@@ -17,20 +17,8 @@ next_direction = "right"
 move_event = pygame.USEREVENT + 1
 pygame.time.set_timer(move_event, 250)
 
-
-def spawn_apple():
-    """ Generates a new apple position that does not collide with the snake. """
-    while True:
-        new_x = random.randint(0, (screen.get_width() - grid_size) // grid_size) * grid_size
-        new_y = random.randint(0, (screen.get_height() - grid_size) // grid_size) * grid_size
-        new_apple = pygame.Rect(new_x, new_y, grid_size, grid_size)
-
-        if not any(segment.colliderect(new_apple) for segment in body):
-            return new_apple
-
-
 # Initialize snake and apple
-apple = spawn_apple()
+apple = pygame.Rect(grid_size * 5, grid_size * 5, grid_size, grid_size)
 body = [
     pygame.Rect(grid_size * 5, grid_size * 5, grid_size, grid_size),
     pygame.Rect(grid_size * 4, grid_size * 5, grid_size, grid_size),
@@ -77,7 +65,6 @@ while True:
                 current_direction = "right"
                 next_direction = "right"
                 is_over = False
-                apple = spawn_apple()
 
         render()
         continue
@@ -113,7 +100,14 @@ while True:
 
             # Check apple collision
             if body[0].colliderect(apple):
-                apple = spawn_apple()  # Respawn apple
+                while True:
+                    new_x = random.randint(0, (screen.get_width() - grid_size) // grid_size) * grid_size
+                    new_y = random.randint(0, (screen.get_height() - grid_size) // grid_size) * grid_size
+                    new_apple = pygame.Rect(new_x, new_y, grid_size, grid_size)
+
+                    if not any(segment.colliderect(new_apple) for segment in body):
+                        apple = new_apple
+                        break
             else:
                 body.pop()  # Remove last segment if no apple eaten
 
