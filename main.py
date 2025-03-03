@@ -29,7 +29,6 @@ def spawn_apple():
             return new_apple
 
 
-# Initialize snake and apple
 apple = spawn_apple()
 body = [
     pygame.Rect(grid_size * 5, grid_size * 5, grid_size, grid_size),
