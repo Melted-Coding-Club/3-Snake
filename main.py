@@ -40,9 +40,6 @@ while True:
             elif event.key == pygame.K_DOWN and current_direction != 'up':
                 next_direction = "down"
 
-            if event.key == pygame.K_SPACE:
-                body.insert(-1, pygame.Rect(body[-1].x, body[-1].y, grid_size, grid_size))
-
         if event.type == move_event:
             # Move snake forward
             body.pop()
