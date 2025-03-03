@@ -88,6 +88,7 @@ while True:
             pygame.quit()
             quit()
 
+        # Player controls
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT and current_direction != 'left':
                 next_direction = "right"
