@@ -30,18 +30,14 @@ while True:
             quit()
 
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_RIGHT:
-                if not current_direction == 'left':
-                    next_direction = "right"
-            if event.key == pygame.K_LEFT:
-                if not current_direction == 'right':
-                    next_direction = "left"
-            if event.key == pygame.K_UP:
-                if not current_direction == 'down':
-                    next_direction = "up"
-            if event.key == pygame.K_DOWN:
-                if not current_direction == 'up':
-                    next_direction = "down"
+            if event.key == pygame.K_RIGHT and current_direction != 'left':
+                next_direction = "right"
+            elif event.key == pygame.K_LEFT and current_direction != 'right':
+                next_direction = "left"
+            elif event.key == pygame.K_UP and current_direction != 'down':
+                next_direction = "up"
+            elif event.key == pygame.K_DOWN and current_direction != 'up':
+                next_direction = "down"
 
             if event.key == pygame.K_SPACE:
                 body.insert(-1, pygame.Rect(body[-1].x, body[-1].y, grid_size, grid_size))
