@@ -9,13 +9,13 @@ fps = 60
 
 grid_size = 40
 
+current_direction = "right"
+next_direction = "right"
+
 body = [
     pygame.Rect(grid_size * 5, grid_size * 5, grid_size, grid_size),
     pygame.Rect(grid_size * 4, grid_size * 5, grid_size, grid_size),
 ]
-
-current_direction = "right"
-next_direction = "right"
 
 move_event = pygame.USEREVENT + 1
 pygame.time.set_timer(move_event, 250)
