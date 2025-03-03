@@ -104,10 +104,9 @@ while True:
                 while True:
                     new_x = random.randint(0, (screen.get_width() - grid_size) // grid_size) * grid_size
                     new_y = random.randint(0, (screen.get_height() - grid_size) // grid_size) * grid_size
-                    new_apple = pygame.Rect(new_x, new_y, grid_size, grid_size)
+                    apple = pygame.Rect(new_x, new_y, grid_size, grid_size)
 
-                    if not any(segment.colliderect(new_apple) for segment in body):
-                        apple = new_apple
+                    if not any(segment.colliderect(apple) for segment in body):
                         break
                 body.insert(-1, pygame.Rect(body[-1].x, body[-1].y, grid_size, grid_size))
     render()
