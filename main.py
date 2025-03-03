@@ -37,37 +37,11 @@ def render():
     text_surface = font.render(f"Length: {len(body)}", False, "white")
     screen.blit(text_surface, (2, 2))
 
-    if is_over:
-        game_over_text = font.render("Game Over - Press SPACE to Restart", False, "red")
-        screen.blit(game_over_text, (
-            screen.get_width() // 2 - game_over_text.get_width() // 2,
-            screen.get_height() // 2 - game_over_text.get_height() // 2
-        ))
-
     pygame.display.update()
     clock.tick(fps)
 
 
-is_over = False
 while True:
-    if is_over:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                quit()
-            elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-                # Reset game state
-                body = [
-                    pygame.Rect(grid_size * 5, grid_size * 5, grid_size, grid_size),
-                    pygame.Rect(grid_size * 4, grid_size * 5, grid_size, grid_size),
-                ]
-                current_direction = "right"
-                next_direction = "right"
-                is_over = False
-
-        render()
-        continue
-
     # Event handling
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
