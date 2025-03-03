@@ -40,18 +40,18 @@ while True:
             if event.key == pygame.K_SPACE:
                 body.insert(-1, pygame.Rect(body[-1].x, body[-1].y, grid_size, grid_size))
 
-        # Move snake forward
         if event.type == move_event:
+            # Move snake forward
             body.pop()
             body.insert(0, body[0].copy())
             if next_direction == "right":
-                body[0].x = body[0].x + grid_size
-            if next_direction == "left":
-                body[0].x = body[0].x - grid_size
-            if next_direction == "up":
-                body[0].y = body[0].y - grid_size
-            if next_direction == "down":
-                body[0].y = body[0].y + grid_size
+                body[0].x += grid_size
+            elif next_direction == "left":
+                body[0].x -= grid_size
+            elif next_direction == "up":
+                body[0].y -= grid_size
+            elif next_direction == "down":
+                body[0].y += grid_size
             current_direction = next_direction
 
     # Rendering
