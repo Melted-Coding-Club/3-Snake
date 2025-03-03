@@ -82,7 +82,6 @@ while True:
 
         # Move snake forward
         if event.type == move_event:
-            body.pop()
             body.insert(0, body[0].copy())
             if next_direction == "right":
                 body[0].x = body[0].x + grid_size
@@ -117,6 +116,9 @@ while True:
             # Check snake collision with itself
             for i in range(1, len(body)):
                 if body[0].colliderect(body[i]):
+                    body.pop(0)
                     is_over = True
                     break
+
+            body.pop()
     render()
