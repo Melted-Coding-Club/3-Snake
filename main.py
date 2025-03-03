@@ -16,11 +16,11 @@ next_direction = "right"
 move_event = pygame.USEREVENT + 1
 pygame.time.set_timer(move_event, 250)
 
+apple = pygame.Rect(grid_size * 3, grid_size * 3, grid_size, grid_size)
 body = [
     pygame.Rect(grid_size * 5, grid_size * 5, grid_size, grid_size),
     pygame.Rect(grid_size * 4, grid_size * 5, grid_size, grid_size),
 ]
-apple = pygame.Rect(grid_size * 3, grid_size * 3, grid_size, grid_size)
 
 while True:
     # Event handling
