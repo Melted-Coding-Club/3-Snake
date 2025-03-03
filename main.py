@@ -9,12 +9,12 @@ fps = 60
 
 grid_size = 40
 
+next_direction = "right"
+
 body = [
     pygame.Rect(grid_size * 5, grid_size * 5, grid_size, grid_size),
     pygame.Rect(grid_size * 4, grid_size * 5, grid_size, grid_size),
 ]
-
-next_direction = "right"
 
 while True:
     # Event handling
