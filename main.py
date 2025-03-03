@@ -113,12 +113,12 @@ while True:
                 is_over = True
                 break
 
+            body.pop()
+
             # Check snake collision with itself
             for i in range(1, len(body)):
                 if body[0].colliderect(body[i]):
                     body.pop(0)
                     is_over = True
                     break
-
-            body.pop()
     render()
