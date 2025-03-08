@@ -17,6 +17,11 @@ next_direction = "right"
 move_event = pygame.USEREVENT + 1
 pygame.time.set_timer(move_event, 250)
 
+body = [
+    pygame.Rect(grid_size * 5, grid_size * 5, grid_size, grid_size),
+    pygame.Rect(grid_size * 4, grid_size * 5, grid_size, grid_size),
+]
+
 
 def spawn_apple():
     """ Generates a new apple position that does not collide with the snake. """
@@ -30,10 +35,6 @@ def spawn_apple():
 
 
 apple = spawn_apple()
-body = [
-    pygame.Rect(grid_size * 5, grid_size * 5, grid_size, grid_size),
-    pygame.Rect(grid_size * 4, grid_size * 5, grid_size, grid_size),
-]
 
 
 def render():
