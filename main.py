@@ -107,12 +107,12 @@ while True:
 
                     if not any(segment.colliderect(apple) for segment in body):
                         break
-                body.insert(-1, pygame.Rect(body[-1].x, body[-1].y, grid_size, grid_size))
+                body.insert(-1, body[-1].copy())
 
             # Check snake collision with walls
             if body[0].right > screen.get_width() or body[0].left < 0 or body[0].top < 0 or body[0].bottom > screen.get_height():
                 is_over = True
-                break
+                continue
 
             body.pop()
 
