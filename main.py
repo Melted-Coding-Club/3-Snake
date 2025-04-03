@@ -65,7 +65,7 @@ while True:
                         break
                     else:
                         print("apple spawned inside snake")
-                body.insert(-1, pygame.Rect(body[-1].x, body[-1].y, grid_size, grid_size))
+                body.insert(-1, body[-1].copy())
 
     # Rendering
     screen.fill("black")
