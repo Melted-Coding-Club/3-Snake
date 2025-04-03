@@ -82,5 +82,5 @@ while True:
 
                     if not any(segment.colliderect(apple) for segment in body):
                         break
-                body.insert(-1, pygame.Rect(body[-1].x, body[-1].y, grid_size, grid_size))
+                body.insert(-1, body[-1].copy())
     render()
