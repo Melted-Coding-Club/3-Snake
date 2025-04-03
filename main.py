@@ -86,7 +86,7 @@ while True:
             # Check snake collision with walls
             if body[0].right > screen.get_width() or body[0].left < 0 or body[0].top < 0 or body[0].bottom > screen.get_height():
                 is_over = True
-                break
+                continue
 
             body.pop()
 
